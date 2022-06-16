@@ -35,8 +35,12 @@ app.get('/search', (req, res) => {
       restaurant.name_en.toLowerCase().includes(keyword.toLowerCase()) ||
       restaurant.category.includes(keyword))
   })
-  res.render('index', { restaurants: filteredRestaurants, keyword: keyword })
 
+  if (filteredRestaurants.length === 0) {
+    res.render('no_results', { keyword: keyword })
+  } else {
+    res.render('index', { restaurants: filteredRestaurants, keyword: keyword })
+  }
 })
 
 // Start and listen on the Express server
