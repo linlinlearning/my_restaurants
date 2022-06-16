@@ -1,18 +1,24 @@
+// Require packages
 const express = require('express')
 const app = express()
-const port = 3000
 const exphbs = require('express-handlebars')
+
+// Require restaurant list
 const restaurantList = require('./restaurant.json')
 
+// Define port
+const port = 3000
+
+// Set template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-app.use(express.static('public'))
 
+// Set static files
+app.use(express.static('public'))
 
 // Define route for index page
 app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantList.results })
-
 })
 
 // Define route for show page
@@ -33,6 +39,7 @@ app.get('/search', (req, res) => {
 
 })
 
+// Start and listen on the Express server
 app.listen(port, () => {
   console.log(`App is running on localhost:${port}`)
 })
