@@ -24,8 +24,7 @@ a {
   filter: blur(3px);
 }
 
-.search-bar .search-bar-outer,
-.alert {
+.search-bar .search-bar-outer {
   margin: 0 auto;
   max-width: 680px;
   background-color: #fce2cf;
@@ -53,6 +52,13 @@ a {
 .form-control:focus {
   box-shadow: none;
   border-color: #ced4da;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /* .row {

@@ -1,9 +1,29 @@
+<!-- search bar -->
+<div class="container search-bar">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
+      <form action="/search">
+        <h4 class="mb-2">尋找餐廳：</h4>
+        <div class="input-group">
+          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+            value="{{keyword}}" aria-describedby="search-button">
+          <div class="input-group-append">
+            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="alert" role="alert">
-  <h3>找不到符合的餐廳 (T＿T)</h3>
+  <h5>找不到符合的餐廳 (T＿T)</h5>
   <span>您輸入的「{{keyword}}」沒有符合的餐廳，建議嘗試以下作法：</span>
   <ul>
-    <li>檢查是否有錯字</li>
+    <li>檢查關鍵字是否含有錯字</li>
     <li>搜尋較為模糊的字詞，例如「咖啡」比「拿鐵」模糊</li>
   </ul>
+  <!--
   <a href="/"><button type="button" class="btn btn-major">返回首頁</button></a>
+  -->
 </div>
