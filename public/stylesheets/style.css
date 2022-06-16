@@ -24,7 +24,8 @@ a {
   filter: blur(3px);
 }
 
-.search-bar .search-bar-outer {
+.search-bar .search-bar-outer,
+.alert {
   margin: 0 auto;
   max-width: 680px;
   background-color: #fce2cf;
