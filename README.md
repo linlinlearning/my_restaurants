@@ -12,7 +12,7 @@ An exercise project, this is a restaurant finder website that selects restaurant
 ```
 git clone https://github.com/linlinlearning/my_restaurants.git
 ```
-2. Open the directory
+2. Go to the directory
 ```
 cd my_restaurants
 ```
