@@ -64,7 +64,7 @@ a {
   display: flex;
   flex: 32%, 0, 1;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: 0;
   padding: 0;
   /*max-width: 900px;*/
@@ -72,7 +72,8 @@ a {
 
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  min-width: 260px;
+  width: 250px;
+  margin: 10px;
 }
 
 /*
