@@ -4,6 +4,7 @@ An exercise project, this is a restaurant finder website that selects restaurant
 ## Features
 - Get a quick view on all restaurants on the homepage
 - Click on a restaurant to view more details
+- Link to Google Map of a restaurant address
 - Search for restaurants by keyword (name or category)
 
 ## Getting started
