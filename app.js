@@ -3,6 +3,24 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 
+// Require mongoose
+const mongoose = require('mongoose')
+
+// mongoose connection
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+
+// Get mongoose connection status
+const db = mongoose.connection
+// connection fails
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+// connection success
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+
+
 // Require restaurant list
 const restaurantList = require('./restaurant.json')
 
