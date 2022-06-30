@@ -22,9 +22,11 @@ db.once('open', () => {
 })
 
 
-// Require restaurant list
-//const restaurantList = require('./restaurant.json')
-const Restaurant = require('./models/restaurant') // 載入 Restaurant model
+/* OLD: Require restaurant list
+const restaurantList = require('./restaurant.json')*/
+
+// New: Require Restaurant model
+const Restaurant = require('./models/restaurant')
 
 // Define port
 const port = 3000
@@ -36,12 +38,6 @@ app.set('view engine', 'handlebars')
 // Set static files
 app.use(express.static('public'))
 
-/* Define route for index page
-app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
-})
-*/
-
 // Define route for index page
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -52,29 +48,39 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
-
 // Define route for show page
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const selectedRestaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: selectedRestaurant })
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
-// Define route for search results
+
+// 搜尋特定餐廳
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.trim()
-  const filteredRestaurants = restaurantList.results.filter(restaurant => {
-    return (restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
-      restaurant.name_en.toLowerCase().includes(keyword.toLowerCase()) ||
-      restaurant.category.includes(keyword))
-  })
+  const keyword = req.query.keyword.trim().toLowerCase()
 
-  if (filteredRestaurants.length === 0) {
-    res.render('no_results', { keyword: keyword })
-  } else {
-    res.render('index', { restaurants: filteredRestaurants, keyword: keyword })
-  }
+  Restaurant.find({})
+    .lean()
+    .then(restaurantsData => {
+      const filterRestaurantsData = restaurantsData.filter(
+        data =>
+          data.name.toLowerCase().includes(keyword) ||
+          data.name_en.toLowerCase().includes(keyword) ||
+          data.category.includes(keyword)
+      )
+      if (filterRestaurantsData.length === 0) {
+        res.render('no_results', { keyword: keyword })
+      } else {
+        res.render("index", { restaurants: filterRestaurantsData, keyword })
+      }
+    })
+    .catch(err => console.log(err))
 })
+
+
 
 // Start and listen on the Express server
 app.listen(port, () => {
