@@ -54,6 +54,20 @@ a {
   border-color: #ced4da;
 }
 
+/*新增餐廳的按鈕*/
+#add-div {
+  margin-top: 10px;
+}
+
+/*用來新增餐廳的表單*/
+.form-group {
+  margin-top: 10px;
+}
+
+label {
+  padding-left: 3px;
+}
+
 .alert {
   display: flex;
   flex-direction: column;
@@ -98,6 +112,32 @@ a {
   white-space: nowrap;
 }
 
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.card-link {
+  color: #3e96bd;
+  margin-right: 1px;
+}
+
+
+.card-link:hover {
+  color: #3e96bd;
+  text-decoration: underline;
+
+}
+
+
+
+#btn-delete {
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
 .restaurant-category {
   color: #666666;
   font-size: 0.8rem;
@@ -111,6 +151,8 @@ a {
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+
 
 @media screen and (max-width: 992px) {
 

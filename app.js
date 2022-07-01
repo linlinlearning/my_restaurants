@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 // Require mongoose
 const mongoose = require('mongoose')
 
@@ -48,6 +49,27 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// Define route for new
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+// 新增餐廳
+app.post('/create', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => res.redirect("/"))
+    .catch(err => console.log(err))
+})
+
+// 刪除餐廳
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+
 // Define route for show page
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
@@ -68,8 +90,9 @@ app.get('/search', (req, res) => {
       const filterRestaurantsData = restaurantsData.filter(
         data =>
           data.name.toLowerCase().includes(keyword) ||
-          data.name_en.toLowerCase().includes(keyword) ||
-          data.category.includes(keyword)
+          //data.name_en.toLowerCase().includes(keyword) ||
+          data.category.includes(keyword) ||
+          data.description.toLowerCase().includes(keyword)
       )
       if (filterRestaurantsData.length === 0) {
         res.render('no_results', { keyword: keyword })
@@ -79,6 +102,8 @@ app.get('/search', (req, res) => {
     })
     .catch(err => console.log(err))
 })
+
+
 
 
 
