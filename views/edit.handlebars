@@ -1,13 +1,14 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/create" method="POST">
-        <h4 class="mb-2">新增餐廳：</h4>
+      <form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
+        <h4 class="mb-2">修改餐廳資訊：</h4>
 
         <!--輸入餐廳名稱-->
         <div class="form-group">
           <label for="name">店名<span style="color: tomato">*</span></label>
-          <input type="text" class="form-control" name="name" id="name" placeholder="例：茉莉的花園廚房" required>
+          <input type="text" class="form-control" name="name" id="name" placeholder="例：茉莉的花園廚房"
+            value="{{ restaurant.name }}" required>
           <div class="invalid-feedback">
             This field is required.
           </div>
@@ -19,7 +20,8 @@
         <!--選擇餐廳類別-->
         <div class="form-group">
           <label for="category">類別<span style="color: tomato">*</span></label>
-          <input list="categories" class="form-control" name="category" id="category" placeholder="例：早午餐" required>
+          <input list="categories" class="form-control" name="category" id="category" placeholder="例：早午餐"
+            value="{{ restaurant.category }}" required>
           <datalist id="categories">
             <option>中東料理</option>
             <option>日本料理</option>
@@ -37,7 +39,8 @@
         <!--輸入餐廳地址-->
         <div class="form-group">
           <label for="location">地址<span style="color: tomato">*</span></label>
-          <input type="text" class="form-control" name="location" id="location" placeholder="請輸入地址 ..." required>
+          <input type="text" class="form-control" name="location" id="location" placeholder="請輸入地址 ..."
+            value="{{ restaurant.location }}" required>
           <div class="invalid-feedback">
             This field is required.
           </div>
@@ -49,14 +52,16 @@
         <!--輸入 Google Map 網址-->
         <div class="form-group">
           <label for="google_map">Google Map 網址</label>
-          <input type="text" class="form-control" name="google_map" id="google_map" placeholder="請輸網址 ..." required>
+          <input type="text" class="form-control" name="google_map" id="google_map" placeholder="請輸網址 ..."
+            value="{{ restaurant.google_map }}" required>
 
         </div>
 
         <!--輸入餐廳電話-->
         <div class="form-group">
           <label for="phone">電話</label>
-          <input type="text" class="form-control" name="phone" id="phone" placeholder="請輸入電話 ..." required>
+          <input type="text" class="form-control" name="phone" id="phone" placeholder="請輸入電話 ..."
+            value="{{ restaurant.phone }}" required>
           <div class="invalid-feedback">
             This field is required.
           </div>
@@ -71,7 +76,7 @@
           <div class="form-row">
             <div class="col">
               <input type="number" class="form-control" min="1.0" max="5.0" step="0.1" name="rating"
-                placeholder="輸入1~5的數字，5 代表非常滿意" required>
+                placeholder="輸入1~5的數字，5 代表非常滿意" value="{{restaurant.rating}}" required>
             </div>
           </div>
         </div>
@@ -80,7 +85,7 @@
         <div class="form-group">
           <label for="description">描述<span style="color: tomato">*</span></label>
           <textarea class="form-control" name="description" id="description" placeholder="介紹一下這家餐廳 ..."
-            required></textarea>
+            required>{{restaurant.description}}</textarea>
           <div class="invalid-feedback">
             This field is required.
           </div>
@@ -92,14 +97,17 @@
         <!--上傳餐廳照片-->
         <div class="form-group">
           <label for="image">照片</label>
-          <input type="text" class="form-control" name="image" id="image" placeholder="請輸入照片網址 ...">
+          <input type="text" class="form-control" name="image" id="image" placeholder="請輸入照片網址 ..."
+            value="{{restaurant.image}}">
         </div>
 
         <div id="add-div">
-          <button class="btn btn-major" id="create-button" type=" submit">確定新增</button>
+          <button class="btn btn-major" id="update-button" type=" submit">更新</button>
           <a href="/"><button type="button" class="btn btn-dark" id="cancel-button">取消</button></a>
+
         </div>
       </form>
+
 
     </div>
 

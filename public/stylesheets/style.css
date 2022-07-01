@@ -64,8 +64,13 @@ a {
   margin-top: 10px;
 }
 
+/*餐廳資訊的標單*/
 label {
   padding-left: 3px;
+}
+
+#edit-button {
+  margin-bottom: 10px;
 }
 
 .alert {

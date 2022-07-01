@@ -79,6 +79,37 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 進入修改餐廳頁面
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+// 修改餐廳資料
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const newData = req.body
+  return Restaurant.findById(id) //查詢資料
+    .then((restaurant) => { //若查詢成功，儲存為 restaurant 變數
+      restaurant.name = newData.name // 修改資料名稱
+      restaurant.category = newData.category
+      restaurant.location = newData.location
+      restaurant.google_map = newData.google_map
+      restaurant.phone = newData.phone
+      restaurant.rating = newData.rating
+      restaurant.description = newData.description
+      restaurant.image = newData.image
+      return restaurant.save() // 並重新儲存
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+
+
 
 // 搜尋特定餐廳
 app.get('/search', (req, res) => {
