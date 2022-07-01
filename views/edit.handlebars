@@ -52,7 +52,7 @@
         <!--輸入 Google Map 網址-->
         <div class="form-group">
           <label for="google_map">Google Map 網址</label>
-          <input type="text" class="form-control" name="google_map" id="google_map" placeholder="請輸網址 ..."
+          <input type="text" class="form-control" name="google_map" id="google_map" placeholder="請輸入網址 ..."
             value="{{ restaurant.google_map }}" required>
 
         </div>
@@ -103,8 +103,8 @@
 
         <div id="add-div">
           <button class="btn btn-major" id="update-button" type=" submit">更新</button>
-          <a href="/"><button type="button" class="btn btn-dark" id="cancel-button">取消</button></a>
-
+          <a href="/restaurants/{{ restaurant._id }}"><button type="button" class="btn btn-dark"
+              id="cancel-button">取消</button></a>
         </div>
       </form>
 
