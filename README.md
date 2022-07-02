@@ -3,11 +3,11 @@ An exercise project, this is a restaurant finder website that selects restaurant
 
 ## Features
 - Get a quick view on all restaurants on the homepage
-- Click on a restaurant to view more details
+- Click on a restaurant photo or the Details button to view more details
 - Link to Google Map of a restaurant address
-- Search for restaurants by keyword (name or category)
+- Search for restaurants by keyword (name, category, or description)
 - Add a restaurant
-- Edit restaurant details
+- Edit restaurant details from the homepage or a detail page 
 - Delete a restaurant
 
 ## Getting started
