@@ -51,7 +51,7 @@
 
         <!--輸入 Google Map 網址-->
         <div class="form-group">
-          <label for="google_map">Google Map 網址</label>
+          <label for="google_map">Google Map 網址<span style="color: tomato">*</span></label>
           <input type="text" class="form-control" name="google_map" id="google_map" placeholder="請輸入網址 ..."
             value="{{ restaurant.google_map }}" required>
 
@@ -59,7 +59,7 @@
 
         <!--輸入餐廳電話-->
         <div class="form-group">
-          <label for="phone">電話</label>
+          <label for="phone">電話<span style="color: tomato">*</span></label>
           <input type="text" class="form-control" name="phone" id="phone" placeholder="請輸入電話 ..."
             value="{{ restaurant.phone }}" required>
           <div class="invalid-feedback">
