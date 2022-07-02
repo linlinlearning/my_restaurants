@@ -6,6 +6,9 @@ An exercise project, this is a restaurant finder website that selects restaurant
 - Click on a restaurant to view more details
 - Link to Google Map of a restaurant address
 - Search for restaurants by keyword (name or category)
+- Add a restaurant
+- Edit restaurant details
+- Delete a restaurant
 
 ## Getting started
 1. Clone the project

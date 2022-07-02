@@ -1,45 +1,46 @@
-// Require packages
+// 載入套件 Require packages
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
-// Require mongoose
+
+// 載入 Mongoose Require mongoose
 const mongoose = require('mongoose')
 
-// mongoose connection
+// Mongoose　連線　mongoose connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
-// Get mongoose connection status
+// 取得連線狀態　Get mongoose connection status
 const db = mongoose.connection
-// connection fails
+// 連線失敗　connection fails
 db.on('error', () => {
   console.log('mongodb error!')
 })
-// connection success
+// 連線成功　connection success
 db.once('open', () => {
   console.log('mongodb connected!')
 })
 
 
-/* OLD: Require restaurant list
+/* OLD: 先前用 json 檔案 Require restaurant list
 const restaurantList = require('./restaurant.json')*/
 
-// New: Require Restaurant model
+// 載入 Restaurant Model 
 const Restaurant = require('./models/restaurant')
 
-// Define port
+// 設定連接埠 Define port
 const port = 3000
 
-// Set template engine
+// 設定樣板引擎 Set template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-// Set static files
+// 設定靜態檔案 Set static files
 app.use(express.static('public'))
 
-// Define route for index page
+// 首頁 Define route for index page
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
@@ -49,18 +50,18 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// Define route for new
+// 新增餐廳 Define route for new
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
-// 新增餐廳
+// 新增餐廳 Define rout for POST/create
 app.post('/create', (req, res) => {
   Restaurant.create(req.body)
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
 })
 
-// 刪除餐廳
+// 刪除餐廳 Define route for delete
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -70,7 +71,7 @@ app.post('/restaurants/:id/delete', (req, res) => {
 })
 
 
-// Define route for show page
+// 詳細資訊 Define route for show page
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -79,7 +80,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 進入修改餐廳頁面
+// 進入修改餐廳頁面 Define  route for entering editing page
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -88,7 +89,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 修改餐廳資料
+// 修改餐廳資料 Define route for editing details
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const newData = req.body
@@ -108,10 +109,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
-
-
-// 搜尋特定餐廳
+// 搜尋特定餐廳 Define rout for searching
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
 
@@ -133,10 +131,6 @@ app.get('/search', (req, res) => {
     })
     .catch(err => console.log(err))
 })
-
-
-
-
 
 // Start and listen on the Express server
 app.listen(port, () => {
