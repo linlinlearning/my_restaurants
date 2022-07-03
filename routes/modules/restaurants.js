@@ -44,6 +44,15 @@ router.get('/:id/edit', (req, res) => {
 // 修改餐廳資料 Define route for editing details
 router.put('/:id', (req, res) => {
   const id = req.params.id
+  return Restaurant.findByIdAndUpdate(id, req.body) //依照ID找到餐廳資料、更新資料、儲存至資料庫
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
+
+
+/* 修改餐廳資料 Define route for editing details
+router.put('/:id', (req, res) => {
+  const id = req.params.id
   const newData = req.body
   return Restaurant.findById(id) //查詢資料
     .then((restaurant) => { //若查詢成功，儲存為 restaurant 變數
@@ -60,7 +69,6 @@ router.put('/:id', (req, res) => {
     .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
-
-
+*/
 
 module.exports = router

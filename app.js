@@ -6,6 +6,7 @@ const routes = require('./routes')
 const app = express()
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+
 // 載入 method-override
 const methodOverride = require('method-override')
 
@@ -49,9 +50,6 @@ app.use(methodOverride('_method'))
 
 // 將 request 導入路由器
 app.use(routes)
-
-
-
 
 // Start and listen on the Express server
 app.listen(port, () => {
