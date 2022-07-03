@@ -55,3 +55,4 @@ app.use(routes)
 app.listen(port, () => {
   console.log(`App is running on localhost:${port}`)
 })
+

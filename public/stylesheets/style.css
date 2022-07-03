@@ -39,6 +39,26 @@ a {
   color: #9b4b4b;
 }
 
+.input-group-append {
+  margin-right: 20px;
+}
+
+
+.edit-form .edit-form-outer {
+  margin: 0 auto;
+  max-width: 680px;
+  background-color: #fce2cf;
+  border-radius: 8px;
+  padding: 20px 30px;
+  border: 0;
+  margin-top: -60px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form .edit-form-inner h4 {
+  color: #9b4b4b;
+}
+
 .form-control::placeholder {
   color: #aaaaaa;
   font-size: 0.8rem;

@@ -4,16 +4,37 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
+
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
+
+          <div class="dropdown sort">
+            <div class="dropdown">
+              <button class="btn btn-major dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                排序餐廳
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/sort/nameAse">店名筆劃 (少→多)</a></li>
+                <li><a class="dropdown-item" href="/sort/nameDesc">店名筆劃 (多→少)</a></li>
+                <li><a class="dropdown-item" href="/sort/category">類型</a></li>
+                <li><a class="dropdown-item" href="/sort/location">地區</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+
         </div>
+
+
       </form>
       <div id="add-div">
-        <a href="/restaurants/new"><button class="btn btn-major" id="add-button">新增餐廳</button></a>
+        <a href="/restaurants/new"><button class="btn btn-major" id="add-button">+ 新增餐廳</button></a>
       </div>
     </div>
   </div>
