@@ -9,6 +9,7 @@ An exercise project, this is a restaurant finder website that selects restaurant
 - Add a restaurant
 - Edit restaurant details from the homepage or a detail page 
 - Delete a restaurant
+- Sort restaurants by name, category, or location
 
 ## Getting started
 1. Clone the project
