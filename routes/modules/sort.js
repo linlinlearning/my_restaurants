@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-router.get('/nameAse', (req, res) => {
+router.get('/name/ase', (req, res) => {
   Restaurant.find().lean().sort({ name: 'asc' })
     .then(restaurants => {
       res.render('index', { restaurants })
@@ -10,7 +10,7 @@ router.get('/nameAse', (req, res) => {
     .catch(error => { console.log(error) })
 })
 
-router.get('/nameDesc', (req, res) => {
+router.get('/name/desc', (req, res) => {
   Restaurant.find().lean().sort({ name: 'desc' })
     .then(restaurants => {
       res.render('index', { restaurants })

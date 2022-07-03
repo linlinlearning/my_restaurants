@@ -14,6 +14,12 @@ a {
   color: #226089;
 }
 
+
+#add-button {
+  background-color: #4592af;
+  color: white;
+}
+
 .banner {
   position: relative;
   z-index: -1;

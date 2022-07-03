@@ -15,7 +15,6 @@ router.post('/', (req, res) => {
 
 // 刪除餐廳 Define route for delete
 router.delete('/:id', (req, res) => {
-  
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
