@@ -19,24 +19,27 @@ git clone https://github.com/linlinlearning/my_restaurants.git
 ```
 cd my_restaurants
 ```
-3. Install nodemon
+3. Install required dependencies
 ```
-npm install -g nodemon
+npm install
 ```
-4. Create package.json
+4. Install nodemon
 ```
-npm init -y
+npm i nodemon
 ```
-5. Install dependencies
+5. Set environment variable: MONGODB_URI
 ```
-npm i express@4.16.4
-npm i express-handlebars@3.0.0
+MONGODB_URI=your connection string
 ```
-6. Start with nodemon
+6. Seed your database
 ```
-nodemon app.js
+npm run seed
 ```
-7. Copy the URL to a browser when seeing this message
+7. Start the server
+```
+npm run dev
+```
+8. Copy the URL to a browser when seeing this message
 ```
 App is running on http://localhost:3000
 ```
