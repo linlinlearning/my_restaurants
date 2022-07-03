@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: true }))
+// 載入 method-override
+const methodOverride = require('method-override')
 
 // 載入 Mongoose Require mongoose
 const mongoose = require('mongoose')
@@ -40,6 +41,12 @@ app.set('view engine', 'handlebars')
 // 設定靜態檔案 Set static files
 app.use(express.static('public'))
 
+// 經過 body-parser 處理
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
+
 // 首頁 Define route for index page
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -50,19 +57,19 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 新增餐廳 Define route for new
+// 進入新增餐廳的表單 Define route for new
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 // 新增餐廳 Define rout for POST/create
-app.post('/create', (req, res) => {
+app.post('/restaurants', (req, res) => {
   Restaurant.create(req.body)
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
 })
 
 // 刪除餐廳 Define route for delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
@@ -90,7 +97,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // 修改餐廳資料 Define route for editing details
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const newData = req.body
   return Restaurant.findById(id) //查詢資料
